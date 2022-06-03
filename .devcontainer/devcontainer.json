@@ -8,11 +8,17 @@
 	"workspaceFolder": "/var/www/html",
 	"settings": {},
 	"extensions": [
-		// "mikestead.dotenv",
-		// "amiralizadeh9480.laravel-extra-intellisense",
-		// "ryannaddy.laravel-artisan",
-		// "onecentlin.laravel5-snippets",
-		// "onecentlin.laravel-blade"
+		"mikestead.dotenv",
+		"amiralizadeh9480.laravel-extra-intellisense",
+		"ryannaddy.laravel-artisan",
+		"onecentlin.laravel5-snippets",
+		"onecentlin.laravel-blade",
+		"bmewburn.vscode-intelephense-client",
+		"xdebug.php-debug",
+		"damianbal.vs-phpclassgen",
+		"recca0120.vscode-phpunit",
+		"EditorConfig.EditorConfig",
+		"hbenl.vscode-test-explorer"
 	],
 	"remoteUser": "sail",
 	// "forwardPorts": [],
