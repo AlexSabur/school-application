@@ -1,0 +1,24 @@
+$white: #ffffff;
+
+$theme-colors: (
+    "light":      #d4d6da,
+    "dark":       #0d1720,
+    "primary":    #0c4658,
+    "secondary":  #14728d,
+    "info":       #508fac,
+    "accent1":    #284c56,
+    "accent2":    #4d6c87,
+    "accent3":    #a3a5ab,
+    "success":    #0da053,
+    "warning":    #e6c80e,
+    "danger":     #f2051d,
+);
+
+// Body
+$body-bg: map-get($theme-colors, 'light');
+
+// Typography
+$font-family-sans-serif: 'Nunito', sans-serif;
+// $font-size-base: 0.9rem;
+$line-height-base: 1.6;
+

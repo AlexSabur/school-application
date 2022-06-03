@@ -1,0 +1,57 @@
+@extends('layouts.app')
+
+@section('content')
+    <div class="container">
+        <div class="row justify-content-center">
+
+            <div class="col-4">
+                <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-4 d-flex">
+                            <i class="bi bi-people-fill m-auto fs-2"></i>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">45</h5>
+                                <p class="card-text"><small class="text-muted">Учеников</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-4 d-flex">
+                            <i class="bi bi-people-fill m-auto fs-2"></i>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">3</h5>
+                                <p class="card-text"><small class="text-muted">Отчёта за день</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-4 d-flex">
+                            <i class="bi bi-people-fill m-auto fs-2"></i>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">3</h5>
+                                <p class="card-text"><small class="text-muted">Отчёта за день</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+@endsection
