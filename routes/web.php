@@ -39,7 +39,7 @@ Route::middleware('auth')->group(function () {
 
     Route::controller(StudentController::class)->group(function () {
         Route::post('/classrooms/{classroom}/students', 'store')->name('classroom.student.store');
-        // Route::redirect('/classrooms/{classroom}/students', '/classrooms/{classroom}')->name('classroom.student.index');
+        Route::get('/classrooms/{classroom}/students', 'index')->name('classroom.student.index');
         Route::get('/classrooms/{classroom}/students/create', 'create')->name('classroom.student.create');
         Route::get('/classrooms/{classroom}/students/{student}', 'show')->name('classroom.student.show');
         Route::post('/classrooms/{classroom}/students/{student}', 'update')->name('classroom.student.update');

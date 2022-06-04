@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
+    public function index(Classroom $classroom)
+    {
+        return to_route('classroom.show', ['classroom' => $classroom->id]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
