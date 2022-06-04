@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Student\Classroom;
+use App\Models\Student\Student;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('home', [
+            'classroomCount' => Classroom::count(),
+            'studentCount' => Student::count(),
+        ]);
     }
 }

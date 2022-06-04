@@ -12,8 +12,8 @@
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <h5 class="card-title">45</h5>
-                                <p class="card-text"><small class="text-muted">Учеников</small></p>
+                                <h5 class="card-title">{{ $classroomCount }}</h5>
+                                <p class="card-text"><small class="text-muted">Классов</small></p>
                             </div>
                         </div>
                     </div>
@@ -28,8 +28,8 @@
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <h5 class="card-title">3</h5>
-                                <p class="card-text"><small class="text-muted">Отчёта за день</small></p>
+                                <h5 class="card-title">{{ $studentCount }}</h5>
+                                <p class="card-text"><small class="text-muted">Учеников</small></p>
                             </div>
                         </div>
                     </div>
