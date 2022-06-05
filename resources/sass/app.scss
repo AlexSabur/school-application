@@ -7,3 +7,13 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 @import '~bootstrap-icons/font/bootstrap-icons';
+
+.btn-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    i {
+        line-height: 1.5;
+    }
+}

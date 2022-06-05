@@ -8,7 +8,7 @@
                 <div class="card mb-3">
                     <div class="row g-0">
                         <div class="col-md-4 d-flex">
-                            <i class="bi bi-people-fill m-auto fs-2"></i>
+                            <i class="bi bi-people m-auto fs-2"></i>
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
@@ -24,7 +24,7 @@
                 <div class="card mb-3">
                     <div class="row g-0">
                         <div class="col-md-4 d-flex">
-                            <i class="bi bi-people-fill m-auto fs-2"></i>
+                            <i class="bi bi-people m-auto fs-2"></i>
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
@@ -40,7 +40,7 @@
                 <div class="card mb-3">
                     <div class="row g-0">
                         <div class="col-md-4 d-flex">
-                            <i class="bi bi-people-fill m-auto fs-2"></i>
+                            <i class="bi bi-people m-auto fs-2"></i>
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">

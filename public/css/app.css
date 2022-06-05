@@ -17892,3 +17892,12 @@ textarea.form-control-lg {
 .bi-filetype-xlsx::before {
   content: "\f793";
 }
+
+.btn-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn-icon i {
+  line-height: 1.5;
+}

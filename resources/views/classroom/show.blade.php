@@ -59,11 +59,11 @@
                                         <td>{{ $student->name }}</td>
                                         <td>
                                             <div class="d-flex gap-3 justify-content-end">
-                                                <a href="{{ route('classroom.student.show', ['classroom' => $classroom->id, 'student' => $student->id]) }}" class="btn btn-accent1">
-                                                    <i class="bi bi-eye-fill"></i>
+                                                <a href="{{ route('classroom.student.show', ['classroom' => $classroom->id, 'student' => $student->id]) }}" class="btn btn-accent1 btn-icon btn-sm">
+                                                    <i class="bi bi-eye"></i>
                                                 </a>
-                                                <a href="{{ route('classroom.student.edit', ['classroom' => $classroom->id, 'student' => $student->id]) }}" class="btn btn-accent2">
-                                                    <i class="bi bi-pencil-fill"></i>
+                                                <a href="{{ route('classroom.student.edit', ['classroom' => $classroom->id, 'student' => $student->id]) }}" class="btn btn-accent2 btn-icon btn-sm">
+                                                    <i class="bi bi-pencil"></i>
                                                 </a>
                                             </div>
                                         </td>

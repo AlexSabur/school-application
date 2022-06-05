@@ -9,9 +9,10 @@ use Illuminate\View\View;
 class ClassroomComposer
 {
     #[Composer('classroom._list')]
+    // #[Composer('record.add')]
     public function classRoomList(View $view)
     {
-        $classrooms = Classroom::query()->withCount('students')->get();
+        $classrooms = Classroom::query()->orderBy('name')->withCount('students')->get();
 
         $view->with('classrooms', $classrooms);
     }

@@ -1,4 +1,5 @@
 // import * as bootstrap from "bootstrap"
+import "bootstrap"
 // import * as Turbo from "@hotwired/turbo"
 
 // Turbo.session.drive = false
