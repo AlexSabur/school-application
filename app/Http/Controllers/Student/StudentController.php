@@ -56,6 +56,7 @@ class StudentController extends Controller
     public function show(Classroom $classroom, Student $student)
     {
         $student->setRelation('classroom', $classroom);
+        $student->load('records.report');
 
         return view('student.show', [
             'classroom' => $classroom,

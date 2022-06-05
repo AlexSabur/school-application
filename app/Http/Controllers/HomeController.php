@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Report\Report;
 use App\Models\Student\Classroom;
 use App\Models\Student\Student;
 use Illuminate\Http\Request;
@@ -18,6 +19,7 @@ class HomeController extends Controller
         return view('home', [
             'classroomCount' => Classroom::count(),
             'studentCount' => Student::count(),
+            'reportCount' => Report::count(),
         ]);
     }
 }

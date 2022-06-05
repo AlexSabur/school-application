@@ -29,6 +29,47 @@
                         Студент: {{ $student->name }}
                     </div>
                 </div>
+
+                <div class="card md-3">
+                    <div class="card-body table-responsive">
+                        <table class="table mb-0">
+                            <thead>
+                                <tr>
+                                    <th scope="col" style="width: 3rem">#</th>
+                                    <th scope="col" style="width: 25%">Отчёт</th>
+                                    <th scope="col" style="width: 25%">Причина</th>
+                                    <th scope="col">Сообщение</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($student->records as $record)
+                                    <tr>
+                                        <th scope="row">{{ $loop->iteration }}</th>
+                                        <td>
+                                            <a class="link-secondary" href="{{ route('report.show', ['report' => $record->report->id]) }}">{{ $record->report->name }}</a>
+                                        </td>
+                                        <td>{{ $record->violation->name }}</td>
+                                        <td>{{ $record->message }}</td>
+                                        <td>
+                                            @if (!$record->report->is_closed)
+                                                <div class="d-flex gap-1 justify-content-end">
+                                                    <a href="{{ route('report.record.edit', ['report' => $record->report->id, 'record' => $record->id]) }}" class="btn btn-accent2 btn-sm btn-icon">
+                                                        <i class="bi bi-pencil"></i>
+                                                    </a>
+                                                    <button type="button" class="btn btn-danger btn-sm btn-icon text-white" data-bs-toggle="modal" data-bs-target="#remove-record-modal" data-bs-action="{{ route('report.record.destroy', ['report' => $record->report->id, 'record' => $record->id]) }}">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </div>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
             </div>
 
         </div>

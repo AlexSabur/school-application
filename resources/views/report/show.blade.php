@@ -74,10 +74,10 @@
                                                             @if (!$report->is_closed)
                                                                 <td>
                                                                     <div class="d-flex gap-1 justify-content-end">
-                                                                        <a href="{{ route('report.record.edit', ['report' => $report->id, 'record' => $record->id]) }}" class="btn btn-accent2 btn-sm">
+                                                                        <a href="{{ route('report.record.edit', ['report' => $report->id, 'record' => $record->id]) }}" class="btn btn-accent2 btn-sm btn-icon">
                                                                             <i class="bi bi-pencil"></i>
                                                                         </a>
-                                                                        <button type="button" class="btn btn-danger btn-sm text-white" data-bs-toggle="modal" data-bs-target="#remove-record-modal" data-bs-action="{{ route('report.record.destroy', ['report' => $report->id, 'record' => $record->id]) }}">
+                                                                        <button type="button" class="btn btn-danger btn-sm btn-icon text-white" data-bs-toggle="modal" data-bs-target="#remove-record-modal" data-bs-action="{{ route('report.record.destroy', ['report' => $report->id, 'record' => $record->id]) }}">
                                                                             <i class="bi bi-trash"></i>
                                                                         </button>
                                                                     </div>

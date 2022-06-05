@@ -1,6 +1,13 @@
 <div class="card mb-3">
-    <div class="card-header">
-        Классы
+    <div class="card-header d-flex justify-content-between">
+        <div class="d-flex gap-3 justify-content-start">
+            Классы
+        </div>
+        <div class="d-flex gap-3 justify-content-end">
+            <a href="{{ route('classroom.create') }}" class="btn btn-sm btn-icon btn-secondary">
+                <i class="bi bi-plus"></i>
+            </a>
+        </div>
     </div>
     <div class="list-group list-group-flush">
         @foreach ($classrooms as $classroom)

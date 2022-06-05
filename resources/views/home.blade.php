@@ -44,8 +44,8 @@
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <h5 class="card-title">3</h5>
-                                <p class="card-text"><small class="text-muted">Отчёта за день</small></p>
+                                <h5 class="card-title">{{ $reportCount }}</h5>
+                                <p class="card-text"><small class="text-muted">Отчётов</small></p>
                             </div>
                         </div>
                     </div>

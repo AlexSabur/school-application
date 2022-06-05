@@ -25,6 +25,7 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Имя</th>
+                                    <th scope="col">Записей</th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
@@ -33,14 +34,15 @@
                                     <tr>
                                         <th scope="row">{{ $loop->iteration }}</th>
                                         <td>{{ $report->name }}</td>
+                                        <td>{{ $report->records_count }}</td>
                                         <td>
-                                            <div class="d-flex gap-3 justify-content-end">
-                                                {{-- <a href="{{ route('classroom.student.show', ['classroom' => $classroom->id, 'student' => $student->id]) }}" class="btn btn-accent1">
-                                                    <i class="bi bi-eye-fill"></i>
+                                            <div class="d-flex gap-1 justify-content-end">
+                                                <a href="{{ route('report.show', ['report' => $report->id]) }}" class="btn btn-accent1 btn-sm btn-icon">
+                                                    <i class="bi bi-eye"></i>
                                                 </a>
-                                                <a href="{{ route('classroom.student.edit', ['classroom' => $classroom->id, 'student' => $student->id]) }}" class="btn btn-accent2">
-                                                    <i class="bi bi-pencil-fill"></i>
-                                                </a> --}}
+                                                <a href="{{ route('report.download', ['report' => $report->id]) }}" class="btn btn-accent2 btn-sm btn-icon">
+                                                    <i class="bi bi-download"></i>
+                                                </a>
                                             </div>
                                         </td>
                                     </tr>
