@@ -9,6 +9,9 @@
             </div>
 
             <div class="col-12 col-lg-8">
+
+                <x-errors-alert />
+
                 <div class="card mb-3">
                     <div class="card-header">
                         <a href="{{ route('classroom.show', ['classroom' => $classroom->id]) }}" class="btn btn-secondary">

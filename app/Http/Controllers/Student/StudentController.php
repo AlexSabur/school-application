@@ -4,9 +4,13 @@ namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Classroom\UpdateRequest;
+use App\Imports\StudentImport;
 use App\Models\Student\Classroom;
 use App\Models\Student\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
+use Maatwebsite\Excel\Facades\Excel;
 
 class StudentController extends Controller
 {
@@ -96,6 +100,32 @@ class StudentController extends Controller
         return back();
     }
 
+    public function upload(Request $request, Classroom $classroom)
+    {
+        try {
+            DB::transaction(function () use ($request, $classroom) {
+                if ('reload' === $request->input('action')) {
+                    $classroom->load('students');
+                    $classroom->students->each->delete();
+                }
+
+                Excel::import(
+                    new StudentImport(
+                        $classroom,
+                        $request->boolean('with_heading_row')
+                    ),
+                    $request->file('file')
+                );
+            });
+        } catch (\Throwable $th) {
+            throw ValidationException::withMessages([
+                'file' => 'Ошибка при импорте'
+            ]);
+        }
+
+        return back();
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -104,6 +134,8 @@ class StudentController extends Controller
      */
     public function destroy(Classroom $classroom, Student $student)
     {
-        //
+        $student->delete();
+
+        return back();
     }
 }

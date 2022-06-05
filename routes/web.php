@@ -43,9 +43,11 @@ Route::middleware('auth')->group(function () {
         Route::post('/classrooms/{classroom}/students', 'store')->name('classroom.student.store');
         Route::get('/classrooms/{classroom}/students', 'index')->name('classroom.student.index');
         Route::get('/classrooms/{classroom}/students/create', 'create')->name('classroom.student.create');
+        Route::post('/classrooms/{classroom}/students/upload', 'upload')->name('classroom.student.upload');
         Route::get('/classrooms/{classroom}/students/{student}', 'show')->name('classroom.student.show');
         Route::post('/classrooms/{classroom}/students/{student}', 'update')->name('classroom.student.update');
         Route::get('/classrooms/{classroom}/students/{student}/edit', 'edit')->name('classroom.student.edit');
+        Route::delete('/classrooms/{classroom}/students/{student}', 'destroy')->name('classroom.student.destroy');
     });
 
     Route::controller(ReportController::class)->group(function () {

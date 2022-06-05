@@ -5,6 +5,9 @@
         <div class="row justify-content-center">
 
             <div class="col-12 col-lg-8">
+
+                <x-errors-alert />
+
                 <div class="card mb-3">
                     <div class="card-body">
                         <form action="{{ route('report.store') }}" method="post">

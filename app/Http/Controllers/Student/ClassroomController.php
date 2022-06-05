@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Student;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Classroom\UpdateRequest;
 use App\Models\Student\Classroom;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class ClassroomController extends Controller
@@ -37,9 +38,13 @@ class ClassroomController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UpdateRequest $request)
     {
-        //
+        $classroom = Classroom::create($request->safe([
+            'name',
+        ]));
+
+        return to_route('classroom.show', ['classroom' => $classroom->id]);
     }
 
     /**
@@ -50,6 +55,12 @@ class ClassroomController extends Controller
      */
     public function show(Classroom $classroom)
     {
+        $classroom->load([
+            'students' => function (Builder $builder) {
+                $builder->withCount('records');
+            },
+        ]);
+
         return view('classroom.show', [
             'classroom' => $classroom
         ]);
@@ -92,6 +103,8 @@ class ClassroomController extends Controller
      */
     public function destroy(Classroom $classroom)
     {
-        //
+        $classroom->delete();
+
+        return back();
     }
 }

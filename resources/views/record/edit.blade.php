@@ -14,15 +14,7 @@
 
             <div class="col-12 col-lg-8">
 
-                @if ($errors->isNotEmpty())
-                    <div class="alert alert-danger" role="alert">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+                <x-errors-alert />
 
                 <div class="card mb-3">
                     <div class="card-header">

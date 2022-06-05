@@ -17,15 +17,7 @@
                 @switch(true)
                     @case($student->exists)
 
-                        @if ($errors->isNotEmpty())
-                            <div class="alert alert-danger" role="alert">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
+                        <x-errors-alert />
 
                         <div class="card mb-3">
                             <div class="card-header">
@@ -84,7 +76,7 @@
                                                     <div class="d-flex gap-3 justify-content-end">
                                                         @if ($student->record)
                                                         <a href="{{ route('report.record.edit', ['report' => $report->id, 'record' => $student->record_id]) }}" class="btn btn-accent2 btn-icon btn-sm">
-                                                            <i class="bi bi-eye"></i>
+                                                            <i class="bi bi-pencil"></i>
                                                         </a>
                                                         @else
                                                         <a href="{{ route('report.record.add', ['report' => $report->id, 'classroom' => $classroom->id, 'student' => $student->id]) }}" class="btn btn-accent1 btn-icon btn-sm">
@@ -131,7 +123,7 @@
                                             <td>
                                                 <div class="d-flex gap-3 justify-content-end">
                                                     <a href="{{ route('report.record.add', ['report' => $report->id, 'classroom' => $classroom->id]) }}" class="btn btn-accent1 btn-icon btn-sm">
-                                                        <i class="bi bi-eye"></i>
+                                                        <i class="bi bi-arrow-right"></i>
                                                     </a>
                                                 </div>
                                             </td>
