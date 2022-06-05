@@ -21,7 +21,7 @@
                     </div>
 
                     <div class="card-body">
-                        <form action="{{ route('classroom.student.update', ['classroom' => $classroom->id, 'student' => $student->id]) }}" method="post" data-controller="form" data-action="form#onSubmit">
+                        <form action="{{ route('classroom.student.update', ['classroom' => $classroom->id, 'student' => $student->id]) }}" method="post">
                             @csrf
 
                             <div class="mb-3">

@@ -25,7 +25,7 @@
                     </div>
 
                     <div class="card-body">
-                        <form action="{{ route('report.record.update', ['report' => $report->id, 'record' => $record->id]) }}" method="post" data-controller="form" data-action="form#onSubmit">
+                        <form action="{{ route('report.record.update', ['report' => $report->id, 'record' => $record->id]) }}" method="post">
                             @csrf
 
                             @foreach ($violations as $violation)

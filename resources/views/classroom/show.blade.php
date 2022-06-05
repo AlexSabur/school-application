@@ -39,7 +39,7 @@
                             Ученики
                         </div>
                         <div class="d-flex gap-3 justify-content-end">
-                            <button type="button" class="btn btn-accent2 btn-sm btn-icon text-white" data-bs-toggle="modal" data-bs-target="#upload-clasroom-modal">
+                            <button type="button" class="btn btn-accent2 btn-icon text-white" data-bs-toggle="modal" data-bs-target="#upload-clasroom-modal">
                                 <i class="bi bi-upload"></i>
                             </button>
                             <a href="{{ route('classroom.student.create', ['classroom' => $classroom->id]) }}" class="btn btn-secondary">

@@ -29,10 +29,12 @@
                                 <i class="bi bi-download"></i>
                                 Скачать
                             </a>
-                            <a href="{{ route('report.record.add', ['report' => $report->id]) }}" class="btn btn-secondary">
-                                <i class="bi bi-plus"></i>
-                                Добавить
-                            </a>
+                            @if (!$report->is_closed)
+                                <a href="{{ route('report.record.add', ['report' => $report->id]) }}" class="btn btn-secondary">
+                                    <i class="bi bi-plus"></i>
+                                    Добавить
+                                </a>
+                            @endif
                         </div>
                     </div>
 
