@@ -23,7 +23,7 @@
                             Записи
                         </div>
                         <div class="d-flex gap-3 justify-content-end">
-                            <a href="{{ route('report.record.add', ['report' => $report->id]) }}" class="btn btn-secondary">
+                            <a href="{{ route('report.download', ['report' => $report->id]) }}" download class="btn btn-secondary">
                                 <i class="bi bi-download"></i>
                                 Скачать
                             </a>
