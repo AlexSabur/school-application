@@ -62,6 +62,7 @@ class RecordController extends Controller
                         $builder->where('report_id', $report->id);
                     }
                 ], 'violation_id');
+                $builder->orderBy('name');
             }
         ]);
 
