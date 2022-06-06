@@ -120,7 +120,7 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th scope="col">#</th>
+                                        {{-- <th scope="col">#</th> --}}
                                         <th scope="col">Класс</th>
                                         <th scope="col">Учеников</th>
                                         <th scope="col">Записей</th>
@@ -130,7 +130,7 @@
                                 <tbody>
                                     @foreach ($classrooms as $classroom)
                                         <tr>
-                                            <th scope="row">{{ $loop->iteration }}</th>
+                                            {{-- <th scope="row">{{ $loop->iteration }}</th> --}}
                                             <td>{{ $classroom->name }}</td>
                                             <td>{{ $classroom->students_count }}</td>
                                             <td>{{ $classroom->students_with_record_count }}</td>
