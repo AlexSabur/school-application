@@ -61,6 +61,7 @@ Route::middleware('auth')->group(function () {
     Route::controller(RecordController::class)->group(function () {
         Route::post('/reports/{report}/add/{classroom}/{student}', 'store')->name('report.record.store');
         Route::get('/reports/{report}/add/{classroom?}/{student?}', 'add')->name('report.record.add');
+        Route::post('/reports/{report}/add/{classroom}/{student}/{violation}', 'storeQuick')->name('report.record.store-quick');
         Route::post('/reports/{report}/{record}', 'update')->name('report.record.update');
         Route::get('/reports/{report}/{record}', 'edit')->name('report.record.edit');
         Route::delete('/reports/{report}/{record}', 'destroy')->name('report.record.destroy');

@@ -17,10 +17,23 @@ class FakeStudentSeeder extends Seeder
      */
     public function run()
     {
-        Classroom::factory(rand(5, 10))->create()->each(function (Classroom $classroom) {
+
+        collect(range(1, 11))->crossJoin(['А', 'Б', 'В', 'Г'])->each(function ($components) {
+            $name = implode('', $components);
+
+            $classroom = ClassRoom::create([
+                'name' => $name
+            ]);
+
             $students = Student::factory(rand(5, 30))->make();
 
             $classroom->students()->saveMany($students);
         });
+
+        // Classroom::factory(rand(5, 10))->create()->each(function (Classroom $classroom) {
+        //     $students = Student::factory(rand(5, 30))->make();
+
+        //     $classroom->students()->saveMany($students);
+        // });
     }
 }

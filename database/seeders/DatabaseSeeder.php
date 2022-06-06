@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Violation::create([
-            'name' => 'Иное',
+            'name' => 'Не работает',
         ]);
     }
 }

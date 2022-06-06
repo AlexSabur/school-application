@@ -57,6 +57,11 @@ class RecordController extends Controller
                         $builder->where('report_id', $report->id);
                     }
                 ], 'id');
+                $builder->withAggregate([
+                    'records as violation_id' => function (Builder $builder) use ($report) {
+                        $builder->where('report_id', $report->id);
+                    }
+                ], 'violation_id');
             }
         ]);
 
@@ -73,6 +78,23 @@ class RecordController extends Controller
             'student' => $student,
             'record' => $record,
         ]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeQuick(Report $report, Classroom $classroom, Student $student, Violation $violation)
+    {
+        $record = $this->newRecord($report, $classroom, $student, $violation);
+
+        $record->violation()->associate($violation);
+
+        $record->saveOrFail();
+
+        return back();
     }
 
     /**
@@ -155,13 +177,13 @@ class RecordController extends Controller
         //
     }
 
-    protected function newRecord(Report $report, Classroom $classroom, Student $student)
+    protected function newRecord(Report $report, Classroom $classroom, Student $student): Record
     {
-        $record = new Record;
-
-        $record->report()->associate($report);
-        $record->classroom()->associate($classroom);
-        $record->student()->associate($student);
+        $record = Record::unguarded(fn () => Record::firstOrNew([
+            'report_id' => $report->id,
+            'classroom_id' => $classroom->id,
+            'student_id' => $student->id,
+        ]));
 
         return $record;
     }

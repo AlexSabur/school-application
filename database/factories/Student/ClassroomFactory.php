@@ -20,7 +20,7 @@ class ClassroomFactory extends Factory
         $number = $this->faker->unique()->numberBetween(1, 99);
 
         return [
-            'name' =>  $letter . $number,
+            'name' =>  $number . $letter,
         ];
     }
 }
