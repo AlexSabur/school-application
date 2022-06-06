@@ -22,7 +22,7 @@
                         <div class="card mb-3">
                             <div class="card-header">
                                 <a href="{{ route('report.record.add', ['report' => $report->id, 'classroom' => $classroom->id]) }}" class="btn btn-secondary">
-                                    <i class="bi bi-arrow-left"></i>
+                                    <x-bi-arrow-left />
                                     Назад
                                 </a>
                             </div>
@@ -55,7 +55,7 @@
                             <div class="card-header d-flex justify-content-between">
                                 <div class="d-flex gap-3 justify-content-start">
                                     <a href="{{ route('report.record.add', ['report' => $report->id]) }}" class="btn btn-secondary">
-                                        <i class="bi bi-arrow-left"></i>
+                                        <x-bi-arrow-left />
                                         Назад
                                     </a>
                                 </div>
@@ -82,11 +82,11 @@
                                                     <div class="d-flex gap-1 justify-content-end">
                                                         @if ($student->record)
                                                         <a href="{{ route('report.record.edit', ['report' => $report->id, 'record' => $student->record_id]) }}" class="btn btn-accent2 btn-icon btn-sm">
-                                                            <i class="bi bi-pencil"></i>
+                                                            <x-bi-pencil />
                                                         </a>
                                                         @else
                                                         <a href="{{ route('report.record.add', ['report' => $report->id, 'classroom' => $classroom->id, 'student' => $student->id]) }}" class="btn btn-accent1 btn-icon btn-sm">
-                                                            <i class="bi bi-plus"></i>
+                                                            <x-bi-plus />
                                                         </a>
                                                         @endif
                                                     </div>
@@ -119,7 +119,7 @@
                         <div class="card-header d-flex justify-content-between">
                             <div class="d-flex gap-3 justify-content-start">
                                 <a href="{{ route('report.show', ['report' => $report->id]) }}" class="btn btn-secondary">
-                                    <i class="bi bi-arrow-left"></i>
+                                    <x-bi-arrow-left />
                                     Назад
                                 </a>
                             </div>
@@ -149,7 +149,7 @@
                                             <td>
                                                 <div class="d-flex gap-3 justify-content-end">
                                                     <a href="{{ route('report.record.add', ['report' => $report->id, 'classroom' => $classroom->id]) }}" class="btn btn-accent1 btn-icon btn-sm">
-                                                        <i class="bi bi-arrow-right"></i>
+                                                        <x-bi-arrow-right />
                                                     </a>
                                                 </div>
                                             </td>

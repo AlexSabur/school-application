@@ -15,7 +15,7 @@
                         </div>
                         <div class="d-flex gap-3 justify-content-end">
                             <a href="{{ route('report.create') }}" class="btn btn-secondary">
-                                <i class="bi bi-plus"></i>
+                                <x-bi-plus />
                                 Добавить
                             </a>
                         </div>
@@ -40,10 +40,10 @@
                                         <td>
                                             <div class="d-flex gap-1 justify-content-end">
                                                 <a href="{{ route('report.show', ['report' => $report->id]) }}" class="btn btn-accent1 btn-sm btn-icon">
-                                                    <i class="bi bi-eye"></i>
+                                                    <x-bi-eye />
                                                 </a>
                                                 <a href="{{ route('report.download', ['report' => $report->id]) }}" class="btn btn-accent2 btn-sm btn-icon">
-                                                    <i class="bi bi-download"></i>
+                                                    <x-bi-download />
                                                 </a>
                                             </div>
                                         </td>

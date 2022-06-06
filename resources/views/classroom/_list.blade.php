@@ -5,7 +5,7 @@
         </div>
         <div class="d-flex gap-3 justify-content-end">
             <a href="{{ route('classroom.create') }}" class="btn btn-sm btn-icon btn-secondary">
-                <i class="bi bi-plus"></i>
+                <x-bi-plus />
             </a>
         </div>
     </div>

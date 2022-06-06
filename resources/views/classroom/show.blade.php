@@ -16,13 +16,13 @@
                     <div class="card-header d-flex justify-content-between">
                         <div class="d-flex gap-3 justify-content-start">
                             <a href="{{ route('classroom.index') }}" class="btn btn-secondary">
-                                <i class="bi bi-arrow-left"></i>
+                                <x-bi-arrow-left />
                                 Назад
                             </a>
                         </div>
                         <div class="d-flex gap-3 justify-content-end">
                             <a href="{{ route('classroom.edit', ['classroom' => $classroom->id]) }}" class="btn btn-secondary">
-                                <i class="bi bi-pencil"></i>
+                                <x-bi-pencil />
                                 Редактировать
                             </a>
                         </div>
@@ -40,10 +40,10 @@
                         </div>
                         <div class="d-flex gap-3 justify-content-end">
                             <button type="button" class="btn btn-accent2 btn-icon text-white" data-bs-toggle="modal" data-bs-target="#upload-clasroom-modal">
-                                <i class="bi bi-upload"></i>
+                                <x-bi-upload />
                             </button>
                             <a href="{{ route('classroom.student.create', ['classroom' => $classroom->id]) }}" class="btn btn-secondary">
-                                <i class="bi bi-plus"></i>
+                                <x-bi-plus />
                                 Добавить
                             </a>
                         </div>
@@ -68,13 +68,13 @@
                                         <td>
                                             <div class="d-flex gap-1 justify-content-end">
                                                 <a href="{{ route('classroom.student.show', ['classroom' => $classroom->id, 'student' => $student->id]) }}" class="btn btn-accent1 btn-icon btn-sm">
-                                                    <i class="bi bi-eye"></i>
+                                                    <x-bi-eye />
                                                 </a>
                                                 <a href="{{ route('classroom.student.edit', ['classroom' => $classroom->id, 'student' => $student->id]) }}" class="btn btn-accent2 btn-icon btn-sm">
-                                                    <i class="bi bi-pencil"></i>
+                                                    <x-bi-pencil />
                                                 </a>
                                                 <button type="button" class="btn btn-danger btn-sm btn-icon text-white" data-bs-toggle="modal" data-bs-target="#remove-student-modal" data-bs-action="{{ route('classroom.student.destroy', ['classroom' => $classroom->id, 'student' => $student->id]) }}">
-                                                    <i class="bi bi-trash"></i>
+                                                    <x-bi-trash />
                                                 </button>
                                             </div>
                                         </td>

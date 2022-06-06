@@ -12,7 +12,7 @@
                 <div class="card mb-3">
                     <div class="card-header">
                         <a href="{{ route('classroom.show', ['classroom' => $classroom->id]) }}" class="btn btn-secondary">
-                            <i class="bi bi-arrow-left"></i>
+                            <x-bi-arrow-left />
                             Назад
                         </a>
                     </div>

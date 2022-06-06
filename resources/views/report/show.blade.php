@@ -26,12 +26,12 @@
                         </div>
                         <div class="d-flex gap-3 justify-content-end">
                             <a href="{{ route('report.download', ['report' => $report->id]) }}" download class="btn btn-secondary">
-                                <i class="bi bi-download"></i>
+                                <x-bi-download />
                                 Скачать
                             </a>
                             @if (!$report->is_closed)
                                 <a href="{{ route('report.record.add', ['report' => $report->id]) }}" class="btn btn-secondary">
-                                    <i class="bi bi-plus"></i>
+                                    <x-bi-plus />
                                     Добавить
                                 </a>
                             @endif
@@ -79,10 +79,10 @@
                                                                 <td>
                                                                     <div class="d-flex gap-1 justify-content-end">
                                                                         <a href="{{ route('report.record.edit', ['report' => $report->id, 'record' => $record->id]) }}" class="btn btn-accent2 btn-sm btn-icon">
-                                                                            <i class="bi bi-pencil"></i>
+                                                                            <x-bi-pencil />
                                                                         </a>
                                                                         <button type="button" class="btn btn-danger btn-sm btn-icon text-white" data-bs-toggle="modal" data-bs-target="#remove-record-modal" data-bs-action="{{ route('report.record.destroy', ['report' => $report->id, 'record' => $record->id]) }}">
-                                                                            <i class="bi bi-trash"></i>
+                                                                            <x-bi-trash />
                                                                         </button>
                                                                     </div>
                                                                 </td>
