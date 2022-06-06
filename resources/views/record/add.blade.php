@@ -118,7 +118,7 @@
                     <div class="card mb-3">
                         <div class="card-header d-flex justify-content-between">
                             <div class="d-flex gap-3 justify-content-start">
-                                <a href="{{ route('report.record.add', ['report' => $report->id]) }}" class="btn btn-secondary">
+                                <a href="{{ route('report.show', ['report' => $report->id]) }}" class="btn btn-secondary">
                                     <i class="bi bi-arrow-left"></i>
                                     Назад
                                 </a>
