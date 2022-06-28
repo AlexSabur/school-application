@@ -48,7 +48,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($report->records->groupBy('classroom.id') as $classroomRecords)
+                                @foreach ($reportClassroomRecords as $classroomRecords)
                                     <tr>
                                         <th scope="row">{{ $loop->iteration }}</th>
                                         <td>{{ $classroomRecords->first()->classroom->name }}</td>

@@ -74,6 +74,19 @@ class ReportController extends Controller
 
         return view('report.show', [
             'report' => $report,
+            'reportClassroomRecords' => $report->records->groupBy('classroom.id')->sort(function ($a, $b) {
+                [$aRecord] = $a;
+                [$bRecord] = $b;
+
+                [$aNumber, $aSymbol] = $this->numberAndSymbol($aRecord->classroom->name);
+                [$bNumber, $bSymbol] = $this->numberAndSymbol($bRecord->classroom->name);
+
+                if ($aNumber === $bNumber) {
+                    return $aSymbol <=> $bSymbol;
+                }
+
+                return $aNumber <=> $bNumber;
+            })
         ]);
     }
 
@@ -114,5 +127,15 @@ class ReportController extends Controller
     public function destroy(Report $report)
     {
         //
+    }
+
+    protected function numberAndSymbol($name)
+    {
+        preg_match('#(?<number>\d+)(?<symbol>\W+)#', $name, $out);
+
+        return [
+            (int) $out['number'],
+            (string) $out['symbol'],
+        ];
     }
 }

@@ -33,7 +33,19 @@ class ReportExport implements WithMultipleSheets
             'violation',
         ]);
 
-        $recordsByClassroom = $records->groupBy('classroom.id');
+        $recordsByClassroom = $records->groupBy('classroom.id')->sort(function ($a, $b) {
+            [$aRecord] = $a;
+            [$bRecord] = $b;
+
+            [$aNumber, $aSymbol] = $this->numberAndSymbol($aRecord->classroom->name);
+            [$bNumber, $bSymbol] = $this->numberAndSymbol($bRecord->classroom->name);
+
+            if ($aNumber === $bNumber) {
+                return $aSymbol <=> $bSymbol;
+            }
+
+            return $aNumber <=> $bNumber;
+        });
 
         return $recordsByClassroom
             ->map(function ($records) {
@@ -47,5 +59,15 @@ class ReportExport implements WithMultipleSheets
             ->prepend(new ReportSheet($recordsByClassroom))
             ->values()
             ->toArray();
+    }
+
+    protected function numberAndSymbol($name)
+    {
+        preg_match('#(?<number>\d+)(?<symbol>\W+)#', $name, $out);
+
+        return [
+            (int) $out['number'],
+            (string) $out['symbol'],
+        ];
     }
 }

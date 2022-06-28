@@ -38,14 +38,14 @@ class RecordController extends Controller
 
         $violations = Violation::query()->get();
         $classrooms = Classroom::query()
-            ->orderBy('name')
             ->withCount([
                 'students',
                 'students as students_with_record_count' => function (Builder $builder) use ($report) {
                     $builder->whereRelation('records', 'report_id', $report->id);
                 }
             ])
-            ->get();
+            ->get()
+            ->sortByName();
 
         $classroom->load([
             'students' => function (Builder $builder) use ($report) {

@@ -12,7 +12,7 @@ class ClassroomComposer
     // #[Composer('record.add')]
     public function classRoomList(View $view)
     {
-        $classrooms = Classroom::query()->orderBy('name')->withCount('students')->get();
+        $classrooms = Classroom::query()->withCount('students')->get()->sortByName();
 
         $view->with('classrooms', $classrooms);
     }
