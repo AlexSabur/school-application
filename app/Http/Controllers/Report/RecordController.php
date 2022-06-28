@@ -203,9 +203,11 @@ class RecordController extends Controller
      * @param  \App\Models\Report\Record  $record
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Record $record)
+    public function destroy(Report $report, Record $record)
     {
-        //
+        $record->delete();
+
+        return back();
     }
 
     protected function newRecord(Report $report, Classroom $classroom, Student $student): Record

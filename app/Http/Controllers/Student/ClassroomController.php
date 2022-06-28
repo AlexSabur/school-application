@@ -105,6 +105,6 @@ class ClassroomController extends Controller
     {
         $classroom->delete();
 
-        return back();
+        return to_route('classroom.index');
     }
 }

@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/classrooms', 'store')->name('classroom.store');
         Route::get('/classrooms/create', 'create')->name('classroom.create');
         Route::get('/classrooms/{classroom}', 'show')->name('classroom.show');
+        Route::delete('/classrooms/{classroom}', 'destroy')->name('classroom.destroy');
         Route::post('/classrooms/{classroom}', 'update')->name('classroom.update');
         Route::get('/classrooms/{classroom}/edit', 'edit')->name('classroom.edit');
     });
