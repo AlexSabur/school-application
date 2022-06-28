@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7c3fcc54e1071a04f435256b96336317",
+    "content-hash": "3aed25e1ab79956239cf09dd38b20156",
     "packages": [
         {
             "name": "blade-ui-kit/blade-icons",
@@ -5562,24 +5562,24 @@
         },
         {
             "name": "tonysm/turbo-laravel",
-            "version": "1.1.0",
+            "version": "1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tonysm/turbo-laravel.git",
-                "reference": "b2585331f52629d8d54904230a39106350963b4f"
+                "reference": "44f80282acd85fc1b80b01c89fa4e980bab0cde8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tonysm/turbo-laravel/zipball/b2585331f52629d8d54904230a39106350963b4f",
-                "reference": "b2585331f52629d8d54904230a39106350963b4f",
+                "url": "https://api.github.com/repos/tonysm/turbo-laravel/zipball/44f80282acd85fc1b80b01c89fa4e980bab0cde8",
+                "reference": "44f80282acd85fc1b80b01c89fa4e980bab0cde8",
                 "shasum": ""
             },
             "require": {
                 "illuminate/support": "^8.47|^9.0",
-                "php": "^7.4|^8.0|^8.1"
+                "php": "^8.0|^8.1"
             },
             "require-dev": {
-                "orchestra/testbench": "^6.24",
+                "orchestra/testbench": "^6.24|^7.0",
                 "phpunit/phpunit": "^9.5"
             },
             "type": "library",
@@ -5621,9 +5621,9 @@
             ],
             "support": {
                 "issues": "https://github.com/tonysm/turbo-laravel/issues",
-                "source": "https://github.com/tonysm/turbo-laravel/tree/1.1.0"
+                "source": "https://github.com/tonysm/turbo-laravel/tree/1.4.1"
             },
-            "time": "2022-01-30T04:42:09+00:00"
+            "time": "2022-06-19T21:13:35+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -9331,7 +9331,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.0.2"
+        "php": "^8.1.0"
     },
     "platform-dev": [],
     "plugin-api-version": "2.3.0"

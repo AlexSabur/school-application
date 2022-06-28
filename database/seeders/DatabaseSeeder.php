@@ -26,11 +26,11 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Violation::create([
-            'name' => 'Потерян',
+            'name' => 'Утеря',
         ]);
 
         Violation::create([
-            'name' => 'Не работает',
+            'name' => 'Сломано',
         ]);
     }
 }

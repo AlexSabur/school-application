@@ -68,44 +68,14 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            {{-- <th scope="col">#</th> --}}
                                             <th scope="col">Имя</th>
                                             <th scope="col"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($classroom->students as $student)
-                                            <tr>
-                                                {{-- <th scope="row">{{ $loop->iteration }}</th> --}}
-                                                <td>{{ $student->name }}</td>
-                                                <td>
-                                                    <div class="d-flex gap-1 justify-content-end">
-                                                        @if ($student->record)
-                                                        <a href="{{ route('report.record.edit', ['report' => $report->id, 'record' => $student->record_id]) }}" class="btn btn-accent2 btn-icon btn-sm">
-                                                            <x-bi-pencil />
-                                                        </a>
-                                                        @else
-                                                        <a href="{{ route('report.record.add', ['report' => $report->id, 'classroom' => $classroom->id, 'student' => $student->id]) }}" class="btn btn-accent1 btn-icon btn-sm">
-                                                            <x-bi-plus />
-                                                        </a>
-                                                        @endif
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="2">
-                                                    <div class="d-flex cols-3 gap-3 justify-content-center">
-                                                        @foreach ($violations as $violation)
-                                                            <button form="store-quick-{{ $student->id }}-{{ $violation->id }}" class="btn btn-sm d-block @if($student->violation_id === $violation->id) btn-accent1 @else btn-accent2 @endif">
-                                                                {{ $violation->name }}
-                                                            </button>
-                                                            <form id="store-quick-{{ $student->id }}-{{ $violation->id }}" class="d-none" action="{{ route('report.record.store-quick', ['report' => $report->id, 'classroom' => $classroom->id, 'student' => $student->id, 'violation' => $violation->id]) }}" method="post">
-                                                                @csrf
-                                                            </form>
-                                                        @endforeach
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                            @include('record._student-info')
+                                            @include('record._student-buttons')
                                         @endforeach
                                     </tbody>
                                 </table>

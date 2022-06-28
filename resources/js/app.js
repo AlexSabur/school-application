@@ -1,8 +1,10 @@
 // import * as bootstrap from "bootstrap"
 import "bootstrap"
-// import * as Turbo from "@hotwired/turbo"
+import * as Turbo from "@hotwired/turbo"
 
 // Turbo.session.drive = false
+
+Turbo.start()
 
 import { Application } from "@hotwired/stimulus"
 import { definitionsFromContext } from "@hotwired/stimulus-webpack-helpers"

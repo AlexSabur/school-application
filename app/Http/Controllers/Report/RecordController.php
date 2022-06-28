@@ -13,6 +13,8 @@ use App\Models\Student\Student;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
+use function Tonysm\TurboLaravel\dom_id;
+
 class RecordController extends Controller
 {
     /**
@@ -87,13 +89,41 @@ class RecordController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeQuick(Report $report, Classroom $classroom, Student $student, Violation $violation)
+    public function storeQuick(Request $request, Report $report, Classroom $classroom, Student $student, Violation $violation)
     {
         $record = $this->newRecord($report, $classroom, $student, $violation);
 
-        $record->violation()->associate($violation);
+        if ($record->violation()->is($violation)) {
+            $record->delete();
+        } else {
+            $record->violation()->associate($violation);
 
-        $record->saveOrFail();
+            $record->saveOrFail();
+        }
+
+
+        if ($request->wantsTurboStream()) {
+            $student->record = $record->exists;
+            $student->record_id = $record->exists ? $record->id : null;
+            $student->violation_id = $record->exists ? $violation->id : null;
+
+            $data = [
+                'violations' => Violation::query()->get(),
+                'report' => $report,
+                'classroom' => $classroom,
+                'student' => $student,
+                'record' => $record,
+            ];
+
+            return response()->turboStream([
+                response()
+                    ->turboStream()
+                    ->replace(dom_id($student, 'info'), view('record._student-info', $data)),
+                response()
+                    ->turboStream()
+                    ->replace(dom_id($student, 'buttons'), view('record._student-buttons', $data)),
+            ]);
+        }
 
         return back();
     }
