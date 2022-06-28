@@ -42,7 +42,7 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th scope="col" style="width: 3rem">#</th>
+                                    <th scope="col" style="width: 3rem" class="d-none d-sm-table-cell">#</th>
                                     <th scope="col">Класс</th>
                                     {{-- <th scope="col"></th> --}}
                                 </tr>
@@ -50,7 +50,7 @@
                             <tbody>
                                 @foreach ($reportClassroomRecords as $classroomRecords)
                                     <tr>
-                                        <th scope="row">{{ $loop->iteration }}</th>
+                                        <th scope="row" class="d-none d-sm-table-cell">{{ $loop->iteration }}</th>
                                         <td>{{ $classroomRecords->first()->classroom->name }}</td>
                                         {{-- <td></td> --}}
                                     </tr>
@@ -59,10 +59,10 @@
                                             <table class="table mb-0">
                                                 <thead>
                                                     <tr>
-                                                        <th scope="col" style="width: 3rem">#</th>
+                                                        <th scope="col" style="width: 3rem" class="d-none d-sm-table-cell ">#</th>
                                                         <th scope="col" style="width: 25%">Ученик</th>
                                                         <th scope="col" style="width: 25%">Причина</th>
-                                                        <th scope="col">Сообщение</th>
+                                                        <th scope="col" class="d-none d-sm-table-cell ">Сообщение</th>
                                                         @if (!$report->is_closed)
                                                             <th scope="col"></th>
                                                         @endif
@@ -71,10 +71,10 @@
                                                 <tbody>
                                                     @foreach ($classroomRecords as $record)
                                                         <tr>
-                                                            <th scope="row">{{ $loop->iteration }}</th>
+                                                            <th scope="row" class="d-none d-sm-table-cell ">{{ $loop->iteration }}</th>
                                                             <td>{{ $record->student->name }}</td>
                                                             <td>{{ $record->violation->name }}</td>
-                                                            <td>{{ $record->message }}</td>
+                                                            <td class="d-none d-sm-table-cell ">{{ $record->message }}</td>
                                                             @if (!$report->is_closed)
                                                                 <td>
                                                                     <div class="d-flex gap-1 justify-content-end">
