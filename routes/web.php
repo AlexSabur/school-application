@@ -75,5 +75,6 @@ Route::middleware('auth')->group(function () {
         Route::get('/violations/create', 'create')->name('violation.create');
         Route::get('/violations/{violation}', 'edit')->name('violation.show');
         Route::post('/violations/{violation}', 'update')->name('violation.update');
+        Route::delete('/violations/{violation}', 'destroy')->name('violation.destroy');
     });
 });
