@@ -5,6 +5,7 @@ use App\Http\Controllers\Report\RecordController;
 use App\Http\Controllers\Report\ReportController;
 use App\Http\Controllers\Student\ClassroomController;
 use App\Http\Controllers\Student\StudentController;
+use App\Http\Controllers\ViolationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::view('/', 'welcome')->middleware('guest')->name('welcome');
+Route::redirect('/', 'home')->name('welcome');
 
 Auth::routes([
     'register' => false,
@@ -67,5 +68,12 @@ Route::middleware('auth')->group(function () {
         Route::get('/reports/{report}/{record}', 'edit')->name('report.record.edit');
         Route::delete('/reports/{report}/{record}', 'destroy')->name('report.record.destroy');
     });
-});
 
+    Route::controller(ViolationController::class)->group(function () {
+        Route::get('/violations', 'index')->name('violation.index');
+        Route::post('/violations', 'store')->name('violation.store');
+        Route::get('/violations/create', 'create')->name('violation.create');
+        Route::get('/violations/{violation}', 'edit')->name('violation.show');
+        Route::post('/violations/{violation}', 'update')->name('violation.update');
+    });
+});
