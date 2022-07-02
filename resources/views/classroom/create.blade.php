@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row justify-content-center">
 
-            <div class="col-12 col-lg-4 d-md-none d-lg-block">
+            <div class="col-12 col-lg-4 d-none d-lg-block">
                 @include('classroom._list')
             </div>
 
