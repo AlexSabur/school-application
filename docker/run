@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# SECRET_KEY=${SECRET_KEY:-""} \
+# SECRET_KEY=${SECRET_KEY:-""} \
+envsubst < /app/.env.example > /app/.env
+
+php artisan optimize --no-ansi
+php artisan storage:link --no-ansi
+# php artisan migrate --no-ansi --force
+
+/usr/bin/supervisord -c /etc/supervisord.conf

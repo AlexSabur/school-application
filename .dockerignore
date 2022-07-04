@@ -24,6 +24,7 @@
 /.vscode
 /.devcontainer
 **.env*
+!.env.example
 **.editorconfig
 **.gitattributes
 **.gitignore
