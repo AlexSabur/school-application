@@ -2,10 +2,11 @@
 
 namespace App\Models\Report;
 
+use App\Models\UuidModel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Report extends Model
+class Report extends UuidModel
 {
     use HasFactory;
 

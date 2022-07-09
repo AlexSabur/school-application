@@ -40,6 +40,12 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'rpc' => [
+            'driver' => 'token',
+            'provider' => 'users',
+            'storage_key' => 'application_token',
+            'hash' => false,
+        ]
     ],
 
     /*

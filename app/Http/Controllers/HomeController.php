@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Report\Report;
 use App\Models\Student\Classroom;
 use App\Models\Student\Student;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,12 +15,14 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('home', [
-            'classroomCount' => Classroom::count(),
-            'studentCount' => Student::count(),
-            'reportCount' => Report::count(),
+        /** @var User */
+        $user = $request->user();
+
+        return view('app', [
+            'user' => $user,
+            'token' => $user->application_token,
         ]);
     }
 }

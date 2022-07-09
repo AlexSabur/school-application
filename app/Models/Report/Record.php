@@ -4,11 +4,12 @@ namespace App\Models\Report;
 
 use App\Models\Student\Classroom;
 use App\Models\Student\Student;
+use App\Models\UuidModel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Record extends Model
+class Record extends UuidModel
 {
     use HasFactory;
 

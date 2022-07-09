@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Report;
 use App\Exports\ReportExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Classroom\UpdateRequest;
+use App\Http\Resources\UserResource;
 use App\Models\Report\Report;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;

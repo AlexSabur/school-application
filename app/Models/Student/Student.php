@@ -3,12 +3,13 @@
 namespace App\Models\Student;
 
 use App\Models\Report\Record;
+use App\Models\UuidModel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Student extends Model
+class Student extends UuidModel
 {
     use HasFactory;
 

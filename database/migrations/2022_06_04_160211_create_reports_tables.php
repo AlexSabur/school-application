@@ -14,25 +14,25 @@ return new class extends Migration
     public function up()
     {
         Schema::create('violations', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('name');
             $table->timestamps();
         });
 
         Schema::create('reports', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('name');
             $table->timestamp('closed_at')->nullable();
             $table->timestamps();
         });
 
         Schema::create('records', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('message')->nullable();
-            $table->foreignId('student_id')->constrained('students')->cascadeOnDelete();
-            $table->foreignId('classroom_id')->constrained('classrooms')->cascadeOnDelete();
-            $table->foreignId('violation_id')->constrained('violations')->cascadeOnDelete();
-            $table->foreignId('report_id')->constrained('reports')->cascadeOnDelete();
+            $table->foreignUuid('student_id')->constrained('students')->cascadeOnDelete();
+            $table->foreignUuid('classroom_id')->constrained('classrooms')->cascadeOnDelete();
+            $table->foreignUuid('violation_id')->constrained('violations')->cascadeOnDelete();
+            $table->foreignUuid('report_id')->constrained('reports')->cascadeOnDelete();
             $table->timestamps();
         });
     }
