@@ -38,6 +38,7 @@
 import { UseOnline } from '@vueuse/components'
 import { BIconPlus, BIconArrowLeft, BIconArrowRight, BIconPencil, BIconEye, BIconDownload, BIconTrash } from 'bootstrap-icons-vue';
 import RecordStudentsTable from '@components/record-students-table.vue';
+import { database } from '@/watermelondb';
 
 export default {
     components: {

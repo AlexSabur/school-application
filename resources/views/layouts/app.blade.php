@@ -75,6 +75,10 @@
                                         Перезагрузка
                                     </a>
 
+                                    <a class="dropdown-item" href="javascript:void(0)" onclick="$sync()">
+                                        Синхронизация
+                                    </a>
+
                                     <a class="dropdown-item" href="{{ route('violation.index') }}">
                                         Причины
                                     </a>

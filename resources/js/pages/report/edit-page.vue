@@ -21,7 +21,6 @@
 </template>
 
 <script>
-import dayjs from 'dayjs'
 import { database } from '@/watermelondb'
 import { BIconArrowLeft } from 'bootstrap-icons-vue';
 

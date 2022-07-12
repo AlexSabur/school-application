@@ -6,19 +6,8 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 import { client } from '@/client'
 import { database, sync, checkUnsyncedChanges } from '@/watermelondb/index'
 
-window.sync = sync
-window.checkUnsyncedChanges = checkUnsyncedChanges
-window.client = client
-window.database = database
-
-const app = createApp({
-    created() {
-        // setInterval(() => sync(), 5000)
-    }
-})
-
-app.provide('$client', client)
-app.provide('$database', database)
+let tempHtml = null
+let appInstance = null
 
 const router = createRouter({
     history: createWebHashHistory(),
@@ -45,12 +34,30 @@ const router = createRouter({
     ]
 })
 
-app.use(router)
+const createApplication = () => {
+    const root = document.querySelector('#pwa')
+    if (!root) {
+        return;
+    }
 
-const root = document.querySelector('#pwa')
+    const app = createApp({})
 
-if (root) {
+    app.use(router)
+
+    app.provide('$client', client)
+    app.provide('$database', database)
+
+    tempHtml = root.cloneNode(true)
+
     app.mount(root);
+
+    console.log(tempHtml);
+
+    return app
+}
+
+window.$sync = async () => {
+    await sync()
 }
 
 window.$routePush = (to) => {
@@ -61,37 +68,26 @@ window.$reset = async () => {
     if (!confirm('Локальная версия будет стёрта')) {
         return
     }
+
+    if (appInstance) {
+        await router.push({ name: 'home' })
+
+        appInstance.unmount()
+
+        appInstance = null
+    }
+
+    const root = document.querySelector('#pwa')
+
+    if (tempHtml && root) {
+        root.parentNode.replaceChild(tempHtml, root);
+    }
+
     await database.write(async () => { return await database.unsafeResetDatabase(); });
+
     await sync();
-    location.reload();
+
+    appInstance = createApplication()
 }
 
-import { Workbox } from 'workbox-window';
-
-if ('serviceWorker' in navigator) {
-    const wb = new Workbox('/service-worker.js');
-
-    wb.register();
-}
-
-// if ('serviceWorker' in navigator) {
-//     const wb = new Workbox('/service-worker.js')
-
-//     wb.addEventListener('install', (event) => {
-//         event.waitUntil(caches.open('v1').then(cache => {
-//             return cache.addAll()
-//         }))
-//     })
-
-//     wb.addEventListener('fetch', (event) => {
-//         event.respondWith(caches.match(event.request).then(response => {
-//             if (response)
-//                 return response;
-//             return fetch(event.request)
-//         }))
-//     })
-
-//     window.addEventListener('load', async () => {
-//         await wb.register('service-worker.js')
-//     })
-// }
+appInstance = createApplication()

@@ -10,7 +10,9 @@
                 <template v-for="(classroomRecords, classroomId) in recordsGroupByClassroom" :key="classroomId">
                     <tr>
                         <!-- <td>{{ classroomRecords }}</td> -->
-                        <td>{{ classroomRecords[0].classroomId }}</td>
+                        <td>
+                            <report-records-classroom-title :classroomId="classroomId" />
+                        </td>
                     </tr>
                     <tr>
                         <td colspan="2">
@@ -40,11 +42,13 @@ import ReportRecordsTableItem from '@components/report-records-table-item.vue'
 import { database } from '@/watermelondb'
 import { Q } from '@nozbe/watermelondb'
 import { onBeforeUnmount, ref } from 'vue';
+import ReportRecordsClassroomTitle from './report-records-classroom-title.vue';
 
 export default {
     components: {
-        ReportRecordsTableItem
-    },
+    ReportRecordsTableItem,
+    ReportRecordsClassroomTitle
+},
     props: ['report'],
     setup({ report }) {
         const recordsGroupByClassroom = ref([])
