@@ -1,4 +1,8 @@
 const mix = require('laravel-mix');
+const path = require('path');
+
+require('laravel-mix-workbox');
+// require('laravel-mix-polyfill');
 
 /*
  |--------------------------------------------------------------------------
@@ -14,4 +18,25 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .sourceMaps()
+    // .polyfill({
+    //     enabled: true,
+    //     useBuiltIns: 'usage',
+    //     entryPoints: 'es',
+    //     targets: '> 0.25%, not dead',
+    // })
+    .webpackConfig({
+        resolve: {
+            fallback: {
+                crypto: require.resolve('crypto-browserify'),
+                stream: require.resolve('stream-browserify'),
+            },
+            alias: {
+                '@': path.resolve('resources/js'),
+                '@pages': path.resolve('resources/js/pages'),
+                '@components': path.resolve('resources/js/components'),
+            }
+        },
+    })
+    .vue({ version: 3 })
+    .generateSW()
     .version();

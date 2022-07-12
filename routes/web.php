@@ -20,16 +20,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::redirect('/', 'home')->name('welcome');
-
 Auth::routes([
     'register' => false,
     'reset' => false,
     'confirm' => false,
 ]);
 
-Route::middleware('auth')->group(function () {
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+// Route::middleware('auth')->group(function () {
+Route::middleware('user:1')->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('home');
 
     Route::controller(ClassroomController::class)->group(function () {
         Route::get('/classrooms', 'index')->name('classroom.index');

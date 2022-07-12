@@ -16,6 +16,7 @@
         "maatwebsite/excel": "^3.1",
         "psr/simple-cache": "^1.0",
         "sajya/server": "^5.0",
+        "spatie/data-transfer-object": "^3.8",
         "tonysm/turbo-laravel": "^1.4"
     },
     "require-dev": {

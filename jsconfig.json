@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+      "baseUrl": ".",
+      "experimentalDecorators": true,
+      "paths": {
+        "@/*": [
+          "resources/js/*"
+        ],
+        "@components/*": [
+          "resources/js/components/*"
+        ],
+        "@pages/*": [
+          "resources/js/pages/*"
+        ]
+      }
+    },
+    "exclude": [
+      "node_modules",
+      "public"
+    ]
+  }

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Procedures\DatabaseProcedure;
+use App\Http\Procedures\PingProcedure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+$procedures = [
+    PingProcedure::class,
+    DatabaseProcedure::class,
+];
+
+Route::rpc('/v1/endpoint', $procedures)
+    ->name('rpc.endpoint')
+    ->middleware('auth:rpc');

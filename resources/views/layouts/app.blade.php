@@ -37,10 +37,14 @@
                     <ul class="navbar-nav me-auto">
                         @auth
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="{{ route('report.index') }}">Отчёты</a>
+                                <a class="nav-link" aria-current="page" href="javascript:void(0)" onclick="$routePush({name: 'report.index'})">Отчёты</a>
+                                {{-- <button class="nav-link" type="button" aria-current="page" onclick="$routePush({name: 'report.index'})">Отчёты</button> --}}
+                                {{-- <a class="nav-link" aria-current="page" href="{{ route('report.index') }}">Отчёты</a> --}}
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="{{ route('classroom.index') }}">Ученики</a>
+                                <a class="nav-link" aria-current="page" href="javascript:void(0)" onclick="$routePush({name: 'classroom.index'})">Ученики</a>
+                                {{-- <button class="nav-link" type="button" aria-current="page" onclick="$routePush({name: 'classroom.index'})">Ученики</button> --}}
+                                {{-- <a class="nav-link" aria-current="page" href="{{ route('classroom.index') }}">Ученики</a> --}}
                             </li>
                         @endauth
                     </ul>
@@ -67,6 +71,10 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="javascript:void(0)" onclick="$reset()">
+                                        Перезагрузка
+                                    </a>
+
                                     <a class="dropdown-item" href="{{ route('violation.index') }}">
                                         Причины
                                     </a>

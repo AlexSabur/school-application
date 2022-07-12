@@ -18,6 +18,7 @@ return new class extends Migration
 
             $table->string('name');
 
+            $table->softDeletes();
             $table->timestamps();
         });
 
@@ -28,6 +29,7 @@ return new class extends Migration
 
             $table->foreignUuid('classroom_id')->constrained('classrooms')->cascadeOnDelete();
 
+            $table->softDeletes();
             $table->timestamps();
         });
     }

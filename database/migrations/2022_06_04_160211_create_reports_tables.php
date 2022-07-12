@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('violations', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
+            $table->softDeletes();
             $table->timestamps();
         });
 
@@ -23,6 +24,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('name');
             $table->timestamp('closed_at')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
 
@@ -33,6 +35,7 @@ return new class extends Migration
             $table->foreignUuid('classroom_id')->constrained('classrooms')->cascadeOnDelete();
             $table->foreignUuid('violation_id')->constrained('violations')->cascadeOnDelete();
             $table->foreignUuid('report_id')->constrained('reports')->cascadeOnDelete();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

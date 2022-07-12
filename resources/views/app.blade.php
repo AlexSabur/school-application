@@ -5,7 +5,7 @@
         __info__ = {
             user: @js($user),
             token: `{{ $token }}`,
-            rpc: `{{ route('rpc.endpoint', absolute: true) }}`,
+            rpc: `{{ route('rpc.endpoint', absolute: false) }}`,
         };
 
         __routes__ = {
@@ -23,17 +23,17 @@
         <router-view></router-view>
     </div>
     <script>
-        if ('serviceWorker' in navigator ) {
+        // if ('serviceWorker' in navigator ) {
 
-            // window.addEventListener('load', async () => {
-            //     try {
-            //         const registration = await navigator.serviceWorker.register('/service-worker.js')
+        //     window.addEventListener('load', async () => {
+        //         try {
+        //             const registration = await navigator.serviceWorker.register('/service-worker.js')
 
-            //         console.log('ServiceWorker registration successful with scope: ', registration.scope);
-            //     } catch (error) {
-            //         console.error('ServiceWorker registration failed: ', err);
-            //     }
-            // });
-        }
+        //             console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        //         } catch (error) {
+        //             console.error('ServiceWorker registration failed: ', err);
+        //         }
+        //     });
+        // }
 </script>
 @endsection
