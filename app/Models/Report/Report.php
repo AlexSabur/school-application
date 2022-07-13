@@ -26,4 +26,13 @@ class Report extends UuidModel
     {
         return $this->hasMany(Record::class);
     }
+
+    protected static function booted()
+    {
+        static::deleted(function (Report $report) {
+            $report->loadMissing('records');
+
+            $report->records->each->delete();
+        });
+    }
 }

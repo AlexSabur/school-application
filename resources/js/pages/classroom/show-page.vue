@@ -36,9 +36,10 @@
                             Ученики
                         </div>
                         <div class="d-flex gap-3 justify-content-end">
-                            <!-- <button type="button" class="btn btn-accent2 btn-icon text-white" data-bs-toggle="modal" data-bs-target="#upload-clasroom-modal">
-                                <x-bi-upload />
-                            </button> -->
+                            <router-link :to="{ name: 'classroom.student.upload', params: { classroom: classroom.id } }"
+                                class="btn btn-accent2 btn-icon text-white">
+                                <b-icon-upload />
+                            </router-link>
                             <router-link :to="{ name: 'classroom.student.create', params: { classroom: classroom.id } }"
                                 class="btn btn-secondary">
                                 <b-icon-plus />
@@ -51,7 +52,6 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <!-- <th scope="col">#</th> -->
                                     <th scope="col">Имя</th>
                                     <th scope="col">Отчётов</th>
                                     <th scope="col"></th>
@@ -59,7 +59,6 @@
                             </thead>
                             <tbody>
                                 <tr v-for="student in students" :key="student.id">
-                                    <!-- <th scope="row">{{ $loop->iteration }}</th> -->
                                     <td>{{ student.name }}</td>
                                     <td>{{ student.records_count }}</td>
                                     <td>
@@ -74,7 +73,7 @@
                                                 class="btn btn-accent2 btn-icon btn-sm">
                                                 <b-icon-pencil />
                                             </router-link>
-                                            <button type="button" class="btn btn-danger btn-sm btn-icon text-white"
+                                            <button type="button" disabled class="btn btn-danger btn-sm btn-icon text-white"
                                                 data-bs-toggle="modal" data-bs-target="#remove-student-modal"
                                                 data-bs-action="{{ route('classroom.student.destroy', ['classroom' => $classroom->id, 'student' => $student->id]) }}">
                                                 <b-icon-trash />
@@ -99,20 +98,21 @@
 
 <script>
 import classroomList from '@components/classroom-list.vue'
-import modelDelete from '@components/model-delete.vue'
-import { BIconArrowLeft, BIconPencil, BIconTrash, BIconEye, BIconPlus } from 'bootstrap-icons-vue';
+import ModelDelete from '@components/model-delete.vue'
+import { BIconArrowLeft, BIconPencil, BIconTrash, BIconEye, BIconPlus, BIconUpload } from 'bootstrap-icons-vue';
 import { database } from '@/watermelondb'
 import { Q } from '@nozbe/watermelondb'
 
 export default {
     components: {
         classroomList,
-        modelDelete,
+        ModelDelete,
         BIconArrowLeft,
         BIconPencil,
         BIconTrash,
         BIconEye,
         BIconPlus,
+        BIconUpload,
     },
     data: () => ({
         _watcher: null,

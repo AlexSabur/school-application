@@ -11,8 +11,10 @@ use App\Models\Report\Violation;
 use App\Models\Student\Classroom;
 use App\Models\Student\Student;
 use App\Models\UuidModel;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -20,6 +22,8 @@ use Sajya\Server\Procedure;
 
 class DatabaseProcedure extends Procedure
 {
+    const LOCK = 30;
+
     /**
      * The name of the procedure that will be
      * displayed and taken into account in the search
@@ -45,31 +49,41 @@ class DatabaseProcedure extends Procedure
      */
     public function pushChanges(Request $request)
     {
-        DB::transaction(function () use ($request) {
-            $changes = $request->input('changes', []);
+        $lock = Cache::lock('database:push', static::LOCK);
 
-            foreach ($changes as $classKey => $changes) {
-                /** @var UuidModel */
-                $modelClass = $this->mapping[$classKey];
+        if (!$lock->get()) {
+            throw new Exception('Try late');
+        }
 
-                foreach ($changes['created'] as $entityData) {
-                    $modelClass::create($this->mapping($entityData));
-                }
+        try {
+            DB::transaction(function () use ($request) {
+                $changes = $request->input('changes', []);
 
-                foreach ($changes['updated'] as $entityData) {
-                    $id = Arr::pull($entityData, 'id');
+                foreach ($changes as $classKey => $changes) {
+                    /** @var UuidModel */
+                    $modelClass = $this->mapping[$classKey];
+
+                    foreach ($changes['created'] as $entityData) {
+                        $modelClass::create($this->mapping($entityData));
+                    }
+
+                    foreach ($changes['updated'] as $entityData) {
+                        $id = Arr::pull($entityData, 'id');
+
+                        $modelClass::withTrashed()
+                            ->findOrFail($id)
+                            ->update($this->mapping($entityData));
+                    }
 
                     $modelClass::withTrashed()
-                        ->findOrFail($id)
-                        ->update($this->mapping($entityData));
+                        ->findMany($changes['deleted'])
+                        ->each
+                        ->delete();
                 }
-
-                $modelClass::withTrashed()
-                    ->findMany($changes['deleted'])
-                    ->each
-                    ->delete();
-            }
-        });
+            });
+        } finally {
+            $lock->release();
+        }
     }
 
     /**
@@ -81,30 +95,40 @@ class DatabaseProcedure extends Procedure
      */
     public function pullChanges(Request $request)
     {
-        $response =  new PullChangesResponse;
-        $lastPulledAt = $request->last_pulled_at;
+        $lock = Cache::lock('database:pull', static::LOCK);
 
-        if ($lastPulledAt === null) {
-            $this->firstInit($response);
+        if (!$lock->get()) {
+            throw new Exception('Try late');
+        }
+
+        try {
+            $response =  new PullChangesResponse;
+            $lastPulledAt = $request->last_pulled_at;
+
+            if ($lastPulledAt === null) {
+                $this->firstInit($response);
+
+                return $response;
+            }
+
+            $lastPulledAt = Str::length((string) $lastPulledAt) === 13
+                ? Date::createFromTimestampMs($lastPulledAt)
+                : Date::createFromTimestamp($lastPulledAt);
+
+            foreach ($this->mapping as $mapName => $class) {
+                /** @var UuidModel $class */
+
+                $response->setChange($mapName, [
+                    'created' => $class::query()->where('created_at', '>', $lastPulledAt)->get(),
+                    'updated' => $class::query()->where('updated_at', '>', $lastPulledAt)->whereColumn('created_at', '!=', 'updated_at')->get(),
+                    'deleted' => $class::query()->onlyTrashed()->where('deleted_at', '>', $lastPulledAt)->pluck('id'),
+                ]);
+            }
 
             return $response;
+        } finally {
+            $lock->release();
         }
-
-        $lastPulledAt = Str::length((string) $lastPulledAt) === 13
-            ? Date::createFromTimestampMs($lastPulledAt)
-            : Date::createFromTimestamp($lastPulledAt);
-
-        foreach ($this->mapping as $mapName => $class) {
-            /** @var UuidModel $class */
-
-            $response->setChange($mapName, [
-                'created' => $class::query()->where('created_at', '>', $lastPulledAt)->get(),
-                'updated' => $class::query()->where('updated_at', '>', $lastPulledAt)->whereColumn('created_at', '!=', 'updated_at')->get(),
-                'deleted' => $class::query()->onlyTrashed()->where('deleted_at', '>', $lastPulledAt)->pluck('id'),
-            ]);
-        }
-
-        return $response;
     }
 
     private function mapping(array $entityData): array

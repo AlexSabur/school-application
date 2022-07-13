@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Student\StudentController;
 use App\Http\Procedures\DatabaseProcedure;
 use App\Http\Procedures\PingProcedure;
 use Illuminate\Http\Request;
@@ -24,3 +25,5 @@ $procedures = [
 Route::rpc('/v1/endpoint', $procedures)
     ->name('rpc.endpoint')
     ->middleware('auth:rpc');
+
+Route::post('/classrooms/{classroom}/students/upload', [StudentController::class, 'upload'])->name('api.classroom.student.upload');

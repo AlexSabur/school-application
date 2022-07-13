@@ -26,4 +26,13 @@ class Classroom extends UuidModel
     {
         return new ClassroomCollection($models);
     }
+
+    protected static function booted()
+    {
+        static::deleted(function (Classroom $classroom) {
+            $classroom->loadMissing('students.records');
+
+            $classroom->students->each->delete();
+        });
+    }
 }

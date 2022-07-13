@@ -20,6 +20,7 @@ const router = createRouter({
         { name: 'classroom.edit', path: '/classrooms/:classroom/edit', component: () => import(/* webpackChunkName: "classroom-pages" */ '@pages/classroom/edit-page.vue') },
         //
         { name: 'classroom.student.create', path: '/classrooms/:classroom/students/create', component: () => import(/* webpackChunkName: "classroom-pages" */ '@pages/student/create-page.vue') },
+        { name: 'classroom.student.upload', path: '/classrooms/:classroom/students/upload', component: () => import(/* webpackChunkName: "classroom-pages" */ '@pages/student/upload-page.vue') },
         { name: 'classroom.student.show', path: '/classrooms/:classroom/students/:student', component: () => import(/* webpackChunkName: "classroom-pages" */ '@pages/student/show-page.vue') },
         { name: 'classroom.student.edit', path: '/classrooms/:classroom/students/:student/edit', component: () => import(/* webpackChunkName: "classroom-pages" */ '@pages/student/edit-page.vue') },
         //
@@ -64,9 +65,11 @@ window.$routePush = (to) => {
     router.push(to)
 }
 
-window.$reset = async () => {
-    if (!confirm('Локальная версия будет стёрта')) {
-        return
+window.$reset = async (forse = false) => {
+    if (!forse) {
+        if (!confirm('Локальная версия будет стёрта')) {
+            return
+        }
     }
 
     if (appInstance) {

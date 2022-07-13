@@ -118,6 +118,8 @@ class StudentController extends Controller
                 );
             });
         } catch (\Throwable $th) {
+            report($th);
+
             throw ValidationException::withMessages([
                 'file' => 'Ошибка при импорте'
             ]);

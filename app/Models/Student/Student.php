@@ -21,4 +21,13 @@ class Student extends UuidModel
     {
         return $this->hasMany(Record::class);
     }
+
+    protected static function booted()
+    {
+        static::deleted(function (Student $student) {
+            $student->loadMissing('records');
+
+            $student->records->each->delete();
+        });
+    }
 }

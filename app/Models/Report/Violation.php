@@ -14,4 +14,13 @@ class Violation extends UuidModel
     {
         return $this->hasMany(Record::class);
     }
+
+    protected static function booted()
+    {
+        static::deleted(function (Violation $violation) {
+            $violation->loadMissing('records');
+
+            $violation->records->each->delete();
+        });
+    }
 }

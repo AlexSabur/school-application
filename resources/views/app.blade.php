@@ -15,8 +15,11 @@
                 return url.replace(regex, (m, $1) => data[$1] || m);
             },
             reportDownload({ id }) {
-                return this.replaceUrl(`{{{ route('report.download', ['report' => ':id'], absolute: false) }}}`, { id })
-            }
+                return this.replaceUrl(`{{{ route('report.download', ['report' => ':id'], absolute: false) }}}`, { id });
+            },
+            classroomStudentUpload({ id }) {
+                return this.replaceUrl(`{{{ route('api.classroom.student.upload', ['classroom' => ':id'], absolute: false) }}}`, { id });
+            },
         }
     </script>
     <div id="pwa">

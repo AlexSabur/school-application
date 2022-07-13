@@ -71,6 +71,7 @@
 </template>
 
 <script>
+import { database } from '@/watermelondb';
 import ClassroomList from '@components/classroom-list.vue'
 import ModelDelete from '@components/model-delete.vue'
 import { BIconArrowLeft, BIconPencil, BIconTrash } from 'bootstrap-icons-vue';
