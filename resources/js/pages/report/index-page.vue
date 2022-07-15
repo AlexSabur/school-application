@@ -38,17 +38,17 @@
                                             <report-download :id="report.id" class="btn btn-accent2 btn-sm btn-icon">
                                                 <b-icon-download />
                                             </report-download>
+                                            <router-link :to="{ name: 'report.delete', params: { report: report.id }}" class="btn btn-danger btn-sm btn-icon text-white">
+                                                <b-icon-trash />
+                                            </router-link>
                                         </div>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-
-                        <!-- {{ $reports->links() }} -->
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </template>
@@ -72,7 +72,7 @@ export default {
     },
     setup() {
         return {
-            reports: useObservable(database.get('reports').query().observe())
+            reports: useObservable(database.get('reports').query().observe()),
         }
     }
 }

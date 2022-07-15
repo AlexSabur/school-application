@@ -10,11 +10,11 @@
                     class="btn btn-accent2 btn-sm btn-icon">
                     <b-icon-pencil />
                 </router-link>
-                <!-- <button type="button" class="btn btn-danger btn-sm btn-icon text-white"
-                    data-bs-toggle="modal" data-bs-target="#remove-record-modal"
-                    data-bs-action="{{ route('report.record.destroy', ['report' => $report->id, 'record' => $record->id]) }}">
+                <router-link
+                    :to="{ name: 'report.record.delete', params: { report: report.id, record: record.id } }"
+                    class="btn btn-danger btn-sm btn-icon text-white">
                     <b-icon-trash />
-                </button> -->
+                </router-link>
             </div>
         </td>
     </tr>
@@ -22,11 +22,12 @@
 <script>
 import { database } from '@/watermelondb'
 import { useObservable } from '@vueuse/rxjs';
-import { BIconPencil } from 'bootstrap-icons-vue';
+import { BIconPencil, BIconTrash } from 'bootstrap-icons-vue';
 
 export default {
     components: {
         BIconPencil,
+        BIconTrash,
     },
     props: ['record', 'report'],
     setup({ record, report }) {

@@ -73,11 +73,11 @@
                                                 class="btn btn-accent2 btn-icon btn-sm">
                                                 <b-icon-pencil />
                                             </router-link>
-                                            <button type="button" disabled class="btn btn-danger btn-sm btn-icon text-white"
-                                                data-bs-toggle="modal" data-bs-target="#remove-student-modal"
-                                                data-bs-action="{{ route('classroom.student.destroy', ['classroom' => $classroom->id, 'student' => $student->id]) }}">
+                                            <router-link
+                                                :to="{ name: 'classroom.student.delete', params: { classroom: classroom.id, student: student.id } }"
+                                                class="btn btn-danger btn-sm btn-icon text-white">
                                                 <b-icon-trash />
-                                            </button>
+                                            </router-link>
                                         </div>
                                     </td>
                                 </tr>

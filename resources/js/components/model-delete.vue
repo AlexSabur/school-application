@@ -31,7 +31,8 @@ export default {
         UseOnline
     },
     data: () => ({
-        _modal: null
+        _modal: null,
+        _callback: null,
     }),
     emits: ['submit', 'dismiss'],
     mounted() {
@@ -41,17 +42,23 @@ export default {
         this._modal.dispose()
 
         this._modal = null
+        this._callback = null
     },
     methods: {
+        open(callback) {
+            this._callback = callback
+        },
         dismiss() {
             this.$emit('dismiss')
-
             this._modal.hide()
+            this._callback = null
         },
         async submit() {
             this.$emit('submit')
-
             this._modal.hide()
+            if (this._callback !== mill) {
+                this._callback()
+            }
         }
     }
 }
